@@ -1,4 +1,4 @@
-# OpenMRS
+# Campus
 
 Domain: https://test.mersys.io/
 
