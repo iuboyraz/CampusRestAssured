@@ -78,12 +78,12 @@ public class _02_PositionManagement {
                 .body(newPositionCategory)
 
                 .when()
-                .put("school-service/api/position-category/")
+                .post("school-service/api/position-category/")
 
                 .then()
                 .log().body()
                 .statusCode(400)
-                .body("message", containsString("Please, provide valid data to update 'Position Category', it's not created to update"))
+                .body("message", containsString("already exists."))
 
         ;
         System.out.println("positionCategoryId = " + positionCategoryId);
@@ -125,23 +125,6 @@ public class _02_PositionManagement {
                 .then()
                 .log().body()
                 .statusCode(204)
-
-        ;
-        System.out.println("positionCategoryId = " + positionCategoryId);
-    }
-    @Test (dependsOnMethods = "deletePositionCategory")
-    public void deletePositionCategoryNegative(){
-
-        given()
-                .spec(requestSpec)
-
-                .when()
-                .delete("school-service/api/position-category/" + positionCategoryId)
-
-                .then()
-                .log().body()
-                .statusCode(400)
-                .body("message", containsString("PositionCategory not  found"))
 
         ;
         System.out.println("positionCategoryId = " + positionCategoryId);

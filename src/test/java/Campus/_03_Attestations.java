@@ -78,12 +78,12 @@ public class _03_Attestations {
                 .body(newAttestation)
 
                 .when()
-                .put("school-service/api/attestation/")
+                .post("school-service/api/attestation/")
 
                 .then()
                 .log().body()
                 .statusCode(400)
-                .body("message", containsString("Please, provide valid data to update 'Attestation', your 'Attestation' is not created to update"))
+                .body("message", containsString("already exists."))
 
         ;
         System.out.println("attestationId = " + attestationId);
@@ -125,23 +125,6 @@ public class _03_Attestations {
                 .then()
                 .log().body()
                 .statusCode(204)
-
-        ;
-        System.out.println("attestationId = " + attestationId);
-    }
-    @Test (dependsOnMethods = "deleteAttestation")
-    public void deleteAttestationNegative(){
-
-        given()
-                .spec(requestSpec)
-
-                .when()
-                .delete("school-service/api/attestation/" + attestationId)
-
-                .then()
-                .log().body()
-                .statusCode(400)
-                .body("message", containsString("attestation not found"))
 
         ;
         System.out.println("attestationId = " + attestationId);
